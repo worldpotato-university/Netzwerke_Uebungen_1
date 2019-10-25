@@ -30,7 +30,7 @@ public class HttpProxy {
         return s.replaceAll("Accept-Encoding.*", "Accept-Encoding: identity");
     }
 
-    private static String toLeet(String s) {
+    private static String makeHappy(String s) {
 
         String additionalString = " (yeah!)";
 
