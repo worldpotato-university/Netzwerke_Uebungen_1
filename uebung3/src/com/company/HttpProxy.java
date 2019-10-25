@@ -49,7 +49,7 @@ public class HttpProxy {
     }
 
     private static String replaceImage(String s) {
-        return s.replaceAll("(<img)(.+)(>)", "<img src=\"\"/>");
+        return s.replaceAll("(<img)(.+)(>)", "<img src=\"https://upload.wikimedia.org/wikipedia/commons/8/8d/Smiley_head_happy.svg\"/>");
     }
 
     private static String replaceMessageLength(String s) {
