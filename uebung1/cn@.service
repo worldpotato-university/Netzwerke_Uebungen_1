@@ -1,0 +1,10 @@
+[Unit]
+Description=for computernetworks
+After=network.target
+
+[Service]
+ExecStart=/home/worldpotato/repos/network1_1/out/production/network1_1/runApp.sh
+StandardInput=socket
+
+[Install]
+WantedBy=mulit-user.target

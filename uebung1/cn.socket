@@ -1,0 +1,9 @@
+[Unit]
+Description=listen on 10101
+
+[Socket]
+ListenStream=10101
+Accept=yes
+
+[Install]
+WantedBy=sockets.target

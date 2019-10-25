@@ -1,0 +1,106 @@
+[01] GET / HTTP/1.1
+[02] Host: localhost:10101
+[03] User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:69.0) Gecko/20100101 Firefox/69.0
+[04] Accept: text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8
+[05] Accept-Language: en-US,de-DE;q=0.7,en;q=0.3
+[06] Accept-Encoding: gzip, deflate
+[07] Connection: keep-alive
+[08] Upgrade-Insecure-Requests: 1
+[09] 
+Aufgezeichnet am Sat Oct 19 13:46:58 CEST 2019
+[01] GET / HTTP/1.1
+[02] Host: localhost:10101
+[03] User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:69.0) Gecko/20100101 Firefox/69.0
+[04] Accept: text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8
+[05] Accept-Language: en-US,de-DE;q=0.7,en;q=0.3
+[06] Accept-Encoding: gzip, deflate
+[07] Connection: keep-alive
+[08] Upgrade-Insecure-Requests: 1
+[09] 
+Aufgezeichnet am Sat Oct 19 13:46:59 CEST 2019
+[01] GET / HTTP/1.1
+[02] Host: localhost:10101
+[03] User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:69.0) Gecko/20100101 Firefox/69.0
+[04] Accept: text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8
+[05] Accept-Language: en-US,de-DE;q=0.7,en;q=0.3
+[06] Accept-Encoding: gzip, deflate
+[07] Connection: keep-alive
+[08] Upgrade-Insecure-Requests: 1
+[09] 
+Aufgezeichnet am Sat Oct 19 13:46:59 CEST 2019
+[01] GET / HTTP/1.1
+[02] Host: localhost:10101
+[03] User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:69.0) Gecko/20100101 Firefox/69.0
+[04] Accept: text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8
+[05] Accept-Language: en-US,de-DE;q=0.7,en;q=0.3
+[06] Accept-Encoding: gzip, deflate
+[07] Connection: keep-alive
+[08] Upgrade-Insecure-Requests: 1
+[09] 
+Aufgezeichnet am Sat Oct 19 13:46:59 CEST 2019
+[01] GET / HTTP/1.1
+[02] Host: localhost:10101
+[03] User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:69.0) Gecko/20100101 Firefox/69.0
+[04] Accept: text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8
+[05] Accept-Language: en-US,de-DE;q=0.7,en;q=0.3
+[06] Accept-Encoding: gzip, deflate
+[07] Connection: keep-alive
+[08] Upgrade-Insecure-Requests: 1
+[09] 
+Aufgezeichnet am Sat Oct 19 13:46:59 CEST 2019
+[01] GET / HTTP/1.1
+[02] Host: localhost:10101
+[03] User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:69.0) Gecko/20100101 Firefox/69.0
+[04] Accept: text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8
+[05] Accept-Language: en-US,de-DE;q=0.7,en;q=0.3
+[06] Accept-Encoding: gzip, deflate
+[07] Connection: keep-alive
+[08] Upgrade-Insecure-Requests: 1
+[09] 
+Aufgezeichnet am Sat Oct 19 13:46:59 CEST 2019
+[01] GET / HTTP/1.1
+[02] Host: localhost:10101
+[03] User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:69.0) Gecko/20100101 Firefox/69.0
+[04] Accept: text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8
+[05] Accept-Language: en-US,de-DE;q=0.7,en;q=0.3
+[06] Accept-Encoding: gzip, deflate
+[07] Connection: keep-alive
+[08] Upgrade-Insecure-Requests: 1
+[09] 
+Aufgezeichnet am Sat Oct 19 13:46:59 CEST 2019
+[01] GET / HTTP/1.1
+[02] Host: localhost:10101
+[03] User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:69.0) Gecko/20100101 Firefox/69.0
+[04] Accept: text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8
+[05] Accept-Language: en-US,de-DE;q=0.7,en;q=0.3
+[06] Accept-Encoding: gzip, deflate
+[07] Connection: keep-alive
+[08] Upgrade-Insecure-Requests: 1
+[09] 
+Aufgezeichnet am Sat Oct 19 13:46:59 CEST 2019
+[01] GET / HTTP/1.1
+[02] Host: localhost:10101
+[03] User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:69.0) Gecko/20100101 Firefox/69.0
+[04] Accept: text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8
+[05] Accept-Language: en-US,de-DE;q=0.7,en;q=0.3
+[06] Accept-Encoding: gzip, deflate
+[07] Connection: keep-alive
+[08] Upgrade-Insecure-Requests: 1
+[09] 
+Aufgezeichnet am Sat Oct 19 13:46:59 CEST 2019
+[01] GET / HTTP/1.1
+[02] Host: localhost:10101
+[03] User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:69.0) Gecko/20100101 Firefox/69.0
+[04] Accept: text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8
+[05] Accept-Language: en-US,de-DE;q=0.7,en;q=0.3
+[06] Accept-Encoding: gzip, deflate
+[07] Connection: keep-alive
+[08] Upgrade-Insecure-Requests: 1
+[09] 
+Aufgezeichnet am Sat Oct 19 13:46:59 CEST 2019
+[01] GET / HTTP/1.1
+[02] Host: 127.0.0.1:10101
+[03] User-Agent: curl/7.66.0
+[04] Accept: */*
+[05] 
+Aufgezeichnet am Sat Oct 19 13:48:18 CEST 2019
