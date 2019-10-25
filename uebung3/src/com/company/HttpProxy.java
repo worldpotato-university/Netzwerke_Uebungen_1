@@ -16,7 +16,7 @@ public class HttpProxy {
             String messageToServer = httpServer.readFromClient();
             tcpClient.writeToServer(changeAcceptEncoding(changeHost(messageToServer)));
             String messageFromServer = tcpClient.readFromServer();
-            httpServer.writeToClient(replaceMessageLength(replaceImage(toLeet(messageFromServer))));
+            httpServer.writeToClient(replaceMessageLength(replaceImage(makeHappy(messageFromServer))));
             tcpClient.stopConnection();
             httpServer.stopServer();
         }
@@ -49,7 +49,7 @@ public class HttpProxy {
     }
 
     private static String replaceImage(String s) {
-        return s.replaceAll("(<img)(.+)(>)", "<img src=\"https://upload.wikimedia.org/wikipedia/commons/8/8d/Smiley_head_happy.svg\"/>");
+        return s.replaceAll("(<img)(.+)(>)", "<img src=\"\"/>");
     }
 
     private static String replaceMessageLength(String s) {
