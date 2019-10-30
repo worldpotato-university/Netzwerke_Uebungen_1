@@ -1,24 +1,49 @@
 package com.company;
 
 import java.io.IOException;
+import java.util.Scanner;
 
 public class HttpProxy {
     private static String host = "";
 
     public static void main(String[] args) throws IOException {
-        host = "mmix.cs.hm.edu";
-        HTTPServer httpServer = new HTTPServer();
-        TCPClient tcpClient = new TCPClient(host);
+        ITCPClient tcpClient;
+
+        boolean useTLS = !(args.length == 0) && args[0].matches("TLS");
+
+
+        if (useTLS) {
+            host = "blog.fefe.de";
+            tcpClient = new TCPClientSSL(host);
+        } else {
+            host = "mmix.cs.hm.edu";
+            tcpClient = new TCPClient(host);
+        }
 
         while (true) {
-            httpServer.startServer();
-            tcpClient.startConnection();
-            String messageToServer = httpServer.readFromClient();
-            tcpClient.writeToServer(changeAcceptEncoding(changeHost(messageToServer)));
-            String messageFromServer = tcpClient.readFromServer();
-            httpServer.writeToClient(replaceMessageLength(replaceImage(makeHappy(messageFromServer))));
-            tcpClient.stopConnection();
-            httpServer.stopServer();
+            try (HTTPServer httpServer = new HTTPServer()) {
+                httpServer.startServer();
+                tcpClient.startConnection();
+
+                String messageToServer = httpServer.readFromClient();
+                tcpClient.writeToServer(changeAcceptEncoding(changeHost(messageToServer)));
+                String messageFromServer = tcpClient.readFromServer();
+//            System.out.println("[INFO] ------------------ OLD MESSAGE ------------------");
+//            System.out.print(messageFromServer);
+//            System.out.println("[INFO] --------------------- END OLD MESSAGE ----------------");
+
+                String out = replaceMessageLength(replaceImage(makeHappy(messageFromServer)));
+//            System.out.println("--------------- NEW MESSAGE --------------");
+//            System.out.println(out);
+
+                httpServer.writeToClient(out);
+                tcpClient.stopConnection();
+                httpServer.stopServer();
+
+            } catch (Exception e) {
+                e.printStackTrace();
+
+            }
         }
     }
 
@@ -45,15 +70,32 @@ public class HttpProxy {
                 .replaceAll("Studentin", "Studentin".concat(additionalString))
                 .replaceAll("Studierende", "Studierende".concat(additionalString))
                 .replaceAll("Windows", "Windows".concat(additionalString))
-                .replaceAll("Linux", "Linux").concat(additionalString);
+                .replaceAll("Linux", "Linux".concat(additionalString));
     }
 
     private static String replaceImage(String s) {
-        return s.replaceAll("(<img)(.+)(>)", "<img src=\"https://upload.wikimedia.org/wikipedia/commons/8/8d/Smiley_head_happy.svg\"/>");
+        return s.replaceAll("(<img)(.+)(>)", "<img src=\"http://upload.wikimedia.org/wikipedia/commons/8/8d/Smiley_head_happy.svg\"/>");
     }
 
     private static String replaceMessageLength(String s) {
-        int length = s.length();
-        return s.replace("Content-Length.*", "Content-Length: ".concat(Integer.toString(length)));
+
+        String message = "";
+        Scanner scanner = new Scanner(s);
+        boolean isMessage = false;
+        while (scanner.hasNextLine()) {
+
+            String line = scanner.nextLine();
+            if (isMessage) {
+                message = message.concat(line).concat("\r\n");
+            }
+            if (line.isEmpty()) isMessage = true;
+        }
+
+        int length1 = message.getBytes().length;
+        int length = message.length();
+        String out = s.replaceAll("Content-Length.*", "Content-Length: " + length1);
+
+
+        return out;
     }
 }

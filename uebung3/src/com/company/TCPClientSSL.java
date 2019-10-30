@@ -1,17 +1,15 @@
 package com.company;
 
-import java.io.BufferedReader;
-import java.io.BufferedWriter;
-import java.io.IOException;
-import java.io.InputStreamReader;
-import java.io.OutputStreamWriter;
+import javax.net.ssl.SSLSocket;
+import javax.net.ssl.SSLSocketFactory;
+import java.io.*;
 import java.net.Socket;
 
-public class TCPClient implements ITCPClient{
-    private String host = "";
+public class TCPClientSSL implements ITCPClient {
+    private String host;
     private BufferedReader fromServer;
     private BufferedWriter toServer;
-    private Socket s;
+    private SSLSocket s;
 
     public BufferedWriter getToServer() {
         return this.toServer;
@@ -21,20 +19,28 @@ public class TCPClient implements ITCPClient{
         return this.fromServer;
     }
 
-    public TCPClient() {
+    public TCPClientSSL() {
     }
 
-    public TCPClient(String _host) {
+    public TCPClientSSL(String _host) {
         this.host = _host;
     }
 
     public void startConnection() {
         try {
-            this.s = new Socket(this.host, 80);
+
+            SSLSocketFactory factory =
+                    (SSLSocketFactory) SSLSocketFactory.getDefault();
+            s = (SSLSocket) factory.createSocket(host, 443);
+            s.startHandshake();
+
             this.toServer = new BufferedWriter(new OutputStreamWriter(this.s.getOutputStream()));
             this.fromServer = new BufferedReader(new InputStreamReader(this.s.getInputStream()));
+
         } catch (IOException var2) {
             var2.printStackTrace();
+        } catch (Exception e) {
+            e.printStackTrace();
         }
 
     }
@@ -63,7 +69,7 @@ public class TCPClient implements ITCPClient{
         String messageToClient = "";
 
         try {
-            for(String line = this.fromServer.readLine(); line != null; line = this.fromServer.readLine()) {
+            for (String line = this.fromServer.readLine(); line != null; line = this.fromServer.readLine()) {
                 messageToClient = messageToClient + line + "\r\n";
             }
         } catch (IOException var3) {

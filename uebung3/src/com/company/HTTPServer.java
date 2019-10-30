@@ -8,7 +8,7 @@ import java.io.OutputStreamWriter;
 import java.net.ServerSocket;
 import java.net.Socket;
 
-public class HTTPServer {
+public class HTTPServer implements AutoCloseable {
     public static final int PORT = 8082;
     private ServerSocket servSock;
     private Socket s;
@@ -56,7 +56,7 @@ public class HTTPServer {
         String message = "";
 
         try {
-            for(String line = this.fromClient.readLine(); line != null && line.length() > 0; line = this.fromClient.readLine()) {
+            for (String line = this.fromClient.readLine(); line != null && line.length() > 0; line = this.fromClient.readLine()) {
                 message = message + line + "\r\n";
             }
         } catch (IOException var3) {
@@ -74,5 +74,10 @@ public class HTTPServer {
             var3.printStackTrace();
         }
 
+    }
+
+    @Override
+    public void close() throws Exception {
+        stopServer();
     }
 }
