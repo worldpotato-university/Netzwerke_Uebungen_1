@@ -1,0 +1,53 @@
+httpProxy:
+
+kontrolle ob verschlüsselt oder ohne
+
+in einer endlosschleife (unser Server läuft auf ewig - ja, die hardware ist so gut):
+    Startet einen httpServer als Schnittstelle gegenüber des Browsers
+    
+    Startet tcp client als Schnittstelle gegenüber des TH
+
+    empfängt GET anfrage vom Browser und ändert das encoding
+    sendet die GET anfrage weiter
+
+    empfängt response von TH und speichert diese
+    
+    ändert die homepage nach vorgaben.
+    sendet diese an Browser zurück
+
+    schliesst tcpClient und httpServer
+schleife ende
+
+httpServer:
+
+    StartServer:
+        öffnet einen Socket und wartet bis ein client connected
+        öffnet reader und writer
+
+    stopServer
+        schliesst Socket
+
+    readFromClient:
+        liest solange vom inputreader wie die Zeile mehr als 0 Zeichen hat und gibt alles gesammelt in einem String zurück
+
+    writeToClient:
+        schreibt den Input zum buffert writer und flushed diesen
+
+TCPclient:
+
+    startConnection
+        öffnet Socket
+        erstellt reader/writer
+
+    stopConnection
+        schliest socket
+
+    writeToServer:
+        schreibt mit writer und flushed
+
+    readFromServer:
+        liest solange zeichen in der Zeile und gibt alles zurück.
+
+TCPClientSSL
+
+    selbe wie TCPClient nur mit anderem Socket type

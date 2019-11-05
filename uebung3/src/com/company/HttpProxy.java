@@ -13,7 +13,7 @@ public class HttpProxy {
 
 
         if (useTLS) {
-            host = "blog.fefe.de";
+            host = "hm.edu";
             tcpClient = new TCPClientSSL(host);
         } else {
             host = "mmix.cs.hm.edu";
