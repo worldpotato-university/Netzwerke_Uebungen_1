@@ -14,8 +14,7 @@ export class AppService {
   createJob(id: number, lat: number, lon: number, temp: number) {
     const zust = AppService.zusteller[id];
     if (zust.status !== ZustellerState.READY) {
-      // TODO ist der Error Code richtig?
-      throw new HttpException('Der Zusteller ist nicht bereit eine Bestellung entgegen zu nehmen', 400);
+      throw new HttpException('Der Zusteller ist nicht bereit eine Bestellung entgegen zu nehmen', 405); // 405 Method Not Allowed
     }
 
     zust.status = ZustellerState.DELIVERING;
@@ -28,8 +27,7 @@ export class AppService {
   updateJob(id: number, lat: number, lon: number) {
     const zust = AppService.zusteller[id];
     if (zust.status !== ZustellerState.DELIVERING) {
-      // TODO ist der Error Code richtig?
-      throw new HttpException('Der Zusteller ist gerade nicht unterwegs.', 400);
+      throw new HttpException('Der Zusteller ist gerade nicht unterwegs.', 405); // 405 Method Not Allowed
     }
 
     // TODO Route berechnen
@@ -39,8 +37,7 @@ export class AppService {
   deleteJob(id: number) {
     const zust = AppService.zusteller[id];
     if (zust.status !== ZustellerState.DELIVERED) {
-      // TODO ist der Error Code richtig?
-      throw new HttpException('Der Zusteller ist noch unterwegs.', 400);
+      throw new HttpException('Der Zusteller ist noch unterwegs.', 405); // 405 Method Not Allowed
     }
 
     zust.status = ZustellerState.READY;
