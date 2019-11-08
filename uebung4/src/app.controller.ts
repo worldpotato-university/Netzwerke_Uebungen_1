@@ -21,16 +21,16 @@ export class AppController {
   createJob(@Param('id') id: number, @Body()delivery: IDelivery) {
     // Input validation
     if (id === null || id === undefined || id < 0 || id > 2) {
-      // TODO ist der Error Code richtig?
-      throw new HttpException('Id is out of range or not defined', 400);
+      throw new HttpException('Id is out of range or not defined', 400); // bad request
     }
     if (delivery.lat === null || delivery.lat === undefined || delivery.lat < -90 || delivery.lat > 90) {
-      // TODO ist der Error Code richtig?
-      throw new HttpException('Lat is out of range or not defined', 400);
+      throw new HttpException('Lat is out of range or not defined', 400); // Bad request
     }
     if (delivery.lon === null || delivery.lon === undefined || delivery.lon < -180 || delivery.lon > 180) {
-      // TODO ist der Error Code richtig?
-      throw new HttpException('Lat is out of range or not defined', 400);
+      throw new HttpException('Lon is out of range or not defined', 400); // Bad request
+    }
+    if (id === 42) {
+      throw new HttpException('I\'m a teapot', 418); // https://en.wikipedia.org/wiki/HTTP_418
     }
     this.appService.createJob(id, delivery.lat, delivery.lon, delivery.temp);
   }
@@ -39,8 +39,7 @@ export class AppController {
   deleteJob(@Param('id') id: number) {
     // Input validation
     if (id === null || id === undefined || id < 0 || id > 2) {
-      // TODO ist der Error Code richtig?
-      throw new HttpException('Id is out of range or not defined', 400);
+      throw new HttpException('Id is out of range or not defined', 400); // bad request
     }
     this.appService.deleteJob(id);
   }
@@ -49,16 +48,13 @@ export class AppController {
   updateJob(@Param('id') id: number, @Body()delivery: IDeliveryUpdate) {
     // Input validation
     if (id === null || id === undefined || id < 0 || id > 2) {
-      // TODO ist der Error Code richtig?
-      throw new HttpException('Id is out of range or not defined', 400);
+      throw new HttpException('Id is out of range or not defined', 400); // bad request
     }
     if (delivery.lat === null || delivery.lat === undefined || delivery.lat < -90 || delivery.lat > 90) {
-      // TODO ist der Error Code richtig?
       throw new HttpException('Lat is out of range or not defined', 400);
     }
     if (delivery.lon === null || delivery.lon === undefined || delivery.lon < -180 || delivery.lon > 180) {
-      // TODO ist der Error Code richtig?
-      throw new HttpException('Lat is out of range or not defined', 400);
+      throw new HttpException('Lon is out of range or not defined', 400);
     }
     this.appService.updateJob(id, delivery.lat, delivery.lon);
   }
