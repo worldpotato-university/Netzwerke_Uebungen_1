@@ -7,6 +7,10 @@ export class Zusteller {
   startDelivery: number;
   stopDelivery: number;
   temperature: number;
+
+  public async checkStatus(): Promise<void> {
+    // TODO
+  }
 }
 
 export enum ZustellerState {
