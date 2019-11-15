@@ -1,123 +1,72 @@
 [01] GET / HTTP/1.1
-[02] Host: localhost:10101
-[03] User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:69.0) Gecko/20100101 Firefox/69.0
-[04] Accept: text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8
-[05] Accept-Language: en-US,de-DE;q=0.7,en;q=0.3
-[06] Accept-Encoding: gzip, deflate
-[07] Connection: keep-alive
-[08] Upgrade-Insecure-Requests: 1
-[09] 
-Aufgezeichnet am Sat Oct 19 13:46:58 CEST 2019
-[01] GET / HTTP/1.1
-[02] Host: localhost:10101
-[03] User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:69.0) Gecko/20100101 Firefox/69.0
-[04] Accept: text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8
-[05] Accept-Language: en-US,de-DE;q=0.7,en;q=0.3
-[06] Accept-Encoding: gzip, deflate
-[07] Connection: keep-alive
-[08] Upgrade-Insecure-Requests: 1
-[09] 
-Aufgezeichnet am Sat Oct 19 13:46:59 CEST 2019
-[01] GET / HTTP/1.1
-[02] Host: localhost:10101
-[03] User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:69.0) Gecko/20100101 Firefox/69.0
-[04] Accept: text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8
-[05] Accept-Language: en-US,de-DE;q=0.7,en;q=0.3
-[06] Accept-Encoding: gzip, deflate
-[07] Connection: keep-alive
-[08] Upgrade-Insecure-Requests: 1
-[09] 
-Aufgezeichnet am Sat Oct 19 13:46:59 CEST 2019
-[01] GET / HTTP/1.1
-[02] Host: localhost:10101
-[03] User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:69.0) Gecko/20100101 Firefox/69.0
-[04] Accept: text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8
-[05] Accept-Language: en-US,de-DE;q=0.7,en;q=0.3
-[06] Accept-Encoding: gzip, deflate
-[07] Connection: keep-alive
-[08] Upgrade-Insecure-Requests: 1
-[09] 
-Aufgezeichnet am Sat Oct 19 13:46:59 CEST 2019
-[01] GET / HTTP/1.1
-[02] Host: localhost:10101
-[03] User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:69.0) Gecko/20100101 Firefox/69.0
-[04] Accept: text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8
-[05] Accept-Language: en-US,de-DE;q=0.7,en;q=0.3
-[06] Accept-Encoding: gzip, deflate
-[07] Connection: keep-alive
-[08] Upgrade-Insecure-Requests: 1
-[09] 
-Aufgezeichnet am Sat Oct 19 13:46:59 CEST 2019
-[01] GET / HTTP/1.1
-[02] Host: localhost:10101
-[03] User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:69.0) Gecko/20100101 Firefox/69.0
-[04] Accept: text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8
-[05] Accept-Language: en-US,de-DE;q=0.7,en;q=0.3
-[06] Accept-Encoding: gzip, deflate
-[07] Connection: keep-alive
-[08] Upgrade-Insecure-Requests: 1
-[09] 
-Aufgezeichnet am Sat Oct 19 13:46:59 CEST 2019
-[01] GET / HTTP/1.1
-[02] Host: localhost:10101
-[03] User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:69.0) Gecko/20100101 Firefox/69.0
-[04] Accept: text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8
-[05] Accept-Language: en-US,de-DE;q=0.7,en;q=0.3
-[06] Accept-Encoding: gzip, deflate
-[07] Connection: keep-alive
-[08] Upgrade-Insecure-Requests: 1
-[09] 
-Aufgezeichnet am Sat Oct 19 13:46:59 CEST 2019
-[01] GET / HTTP/1.1
-[02] Host: localhost:10101
-[03] User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:69.0) Gecko/20100101 Firefox/69.0
-[04] Accept: text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8
-[05] Accept-Language: en-US,de-DE;q=0.7,en;q=0.3
-[06] Accept-Encoding: gzip, deflate
-[07] Connection: keep-alive
-[08] Upgrade-Insecure-Requests: 1
-[09] 
-Aufgezeichnet am Sat Oct 19 13:46:59 CEST 2019
-[01] GET / HTTP/1.1
-[02] Host: localhost:10101
-[03] User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:69.0) Gecko/20100101 Firefox/69.0
-[04] Accept: text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8
-[05] Accept-Language: en-US,de-DE;q=0.7,en;q=0.3
-[06] Accept-Encoding: gzip, deflate
-[07] Connection: keep-alive
-[08] Upgrade-Insecure-Requests: 1
-[09] 
-Aufgezeichnet am Sat Oct 19 13:46:59 CEST 2019
-[01] GET / HTTP/1.1
-[02] Host: localhost:10101
-[03] User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:69.0) Gecko/20100101 Firefox/69.0
-[04] Accept: text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8
-[05] Accept-Language: en-US,de-DE;q=0.7,en;q=0.3
-[06] Accept-Encoding: gzip, deflate
-[07] Connection: keep-alive
-[08] Upgrade-Insecure-Requests: 1
-[09] 
-Aufgezeichnet am Sat Oct 19 13:46:59 CEST 2019
+[02] Host: 127.0.0.1:10101
+[03] User-Agent: curl/7.66.0
+[04] Accept: */*
+[05] 
+Aufgezeichnet am Fri Nov 08 16:15:21 CET 2019
 [01] GET / HTTP/1.1
 [02] Host: 127.0.0.1:10101
 [03] User-Agent: curl/7.66.0
 [04] Accept: */*
 [05] 
-Aufgezeichnet am Sat Oct 19 13:48:18 CEST 2019
+Aufgezeichnet am Fri Nov 08 16:15:39 CET 2019
 [01] GET / HTTP/1.1
-[02] Host: localhost:10101
+[02] Host: 127.0.0.1:10101
 [03] User-Agent: curl/7.66.0
 [04] Accept: */*
 [05] 
-Aufgezeichnet am Mon Oct 21 21:55:06 CEST 2019
+Aufgezeichnet am Fri Nov 08 16:15:41 CET 2019
 [01] GET / HTTP/1.1
-[02] Host: 192.168.0.55:10101
-[03] Connection: keep-alive
-[04] Upgrade-Insecure-Requests: 1
-[05] User-Agent: Mozilla/5.0 (Linux; Android 9) AppleWebKit/537.36 (KHTML, like Gecko) Version/4.0 Chrome/77.0.3865.116 Mobile Safari/537.36 DuckDuckGo/5
-[06] Accept: text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3
-[07] X-Requested-With: com.duckduckgo.mobile.android
-[08] Accept-Encoding: gzip, deflate
-[09] Accept-Language: en-DE,en;q=0.9,de-DE;q=0.8,de;q=0.7,en-US;q=0.6
-[10] 
-Aufgezeichnet am Mon Oct 21 21:57:13 CEST 2019
+[02] Host: 127.0.0.1:10101
+[03] User-Agent: curl/7.66.0
+[04] Accept: */*
+[05] 
+Aufgezeichnet am Fri Nov 08 16:17:42 CET 2019
+[01] GET / HTTP/1.1
+[02] Host: 127.0.0.1:10101
+[03] User-Agent: curl/7.66.0
+[04] Accept: */*
+[05] 
+Aufgezeichnet am Fri Nov 08 16:19:54 CET 2019
+[01] GET / HTTP/1.1
+[02] Host: 127.0.0.1:10101
+[03] User-Agent: curl/7.66.0
+[04] Accept: */*
+[05] 
+Aufgezeichnet am Fri Nov 08 16:21:59 CET 2019
+[01] GET / HTTP/1.1
+[02] Host: 127.0.0.1:10101
+[03] User-Agent: curl/7.66.0
+[04] Accept: */*
+[05] 
+Aufgezeichnet am Fri Nov 08 16:24:31 CET 2019
+[01] GET / HTTP/1.1
+[02] Host: 127.0.0.1:10101
+[03] User-Agent: curl/7.66.0
+[04] Accept: */*
+[05] 
+Aufgezeichnet am Fri Nov 08 16:27:38 CET 2019
+[01] GET / HTTP/1.1
+[02] Host: 127.0.0.1:10101
+[03] User-Agent: curl/7.66.0
+[04] Accept: */*
+[05] 
+Aufgezeichnet am Fri Nov 08 16:28:26 CET 2019
+[01] GET / HTTP/1.1
+[02] Host: 127.0.0.1:10101
+[03] User-Agent: curl/7.66.0
+[04] Accept: */*
+[05] 
+Aufgezeichnet am Fri Nov 08 16:30:23 CET 2019
+[01] GET / HTTP/1.1
+[02] Host: 127.0.0.1:10101
+[03] User-Agent: curl/7.66.0
+[04] Accept: */*
+[05] 
+Aufgezeichnet am Fri Nov 08 16:37:38 CET 2019
+[01] GET / HTTP/1.1
+[02] Host: 127.0.0.1:10101
+[03] User-Agent: curl/7.66.0
+[04] Accept: */*
+[05] 
+Aufgezeichnet am Fri Nov 08 16:37:55 CET 2019

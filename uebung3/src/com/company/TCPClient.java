@@ -6,6 +6,7 @@ import java.io.IOException;
 import java.io.InputStreamReader;
 import java.io.OutputStreamWriter;
 import java.net.Socket;
+import java.nio.charset.StandardCharsets;
 
 public class TCPClient implements ITCPClient{
     private String host = "";
@@ -31,8 +32,8 @@ public class TCPClient implements ITCPClient{
     public void startConnection() {
         try {
             this.s = new Socket(this.host, 80);
-            this.toServer = new BufferedWriter(new OutputStreamWriter(this.s.getOutputStream()));
-            this.fromServer = new BufferedReader(new InputStreamReader(this.s.getInputStream()));
+            this.toServer = new BufferedWriter(new OutputStreamWriter(this.s.getOutputStream(), StandardCharsets.ISO_8859_1));
+            this.fromServer = new BufferedReader(new InputStreamReader(this.s.getInputStream(), StandardCharsets.ISO_8859_1));
         } catch (IOException var2) {
             var2.printStackTrace();
         }

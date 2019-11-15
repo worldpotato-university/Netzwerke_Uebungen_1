@@ -13,7 +13,8 @@ public class HttpProxy {
 
 
         if (useTLS) {
-            host = "blog.fefe.de";
+//            host = "blog.fefe.de";
+              host = "hm.edu";
             tcpClient = new TCPClientSSL(host);
         } else {
             host = "mmix.cs.hm.edu";
@@ -32,7 +33,7 @@ public class HttpProxy {
 //            System.out.print(messageFromServer);
 //            System.out.println("[INFO] --------------------- END OLD MESSAGE ----------------");
 
-                String out = replaceMessageLength(replaceImage(makeHappy(messageFromServer)));
+                String out = replaceMessageLength(replaceImage(makeHappy(changeAcceptEncoding(messageFromServer))));
 //            System.out.println("--------------- NEW MESSAGE --------------");
 //            System.out.println(out);
 

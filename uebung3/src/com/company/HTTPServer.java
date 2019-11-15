@@ -7,6 +7,7 @@ import java.io.InputStreamReader;
 import java.io.OutputStreamWriter;
 import java.net.ServerSocket;
 import java.net.Socket;
+import java.nio.charset.StandardCharsets;
 
 public class HTTPServer implements AutoCloseable {
     public static final int PORT = 8082;
@@ -25,13 +26,13 @@ public class HTTPServer implements AutoCloseable {
 
     public void startServer() {
         try {
-            this.servSock = new ServerSocket(8082);
+            this.servSock = new ServerSocket(8083);
             System.out.println("Server started, waiting for clients...");
 
             try {
                 this.s = this.servSock.accept();
-                this.fromClient = new BufferedReader(new InputStreamReader(this.s.getInputStream()));
-                this.toClient = new BufferedWriter(new OutputStreamWriter(this.s.getOutputStream()));
+                this.fromClient = new BufferedReader(new InputStreamReader(this.s.getInputStream(), StandardCharsets.ISO_8859_1));
+                this.toClient = new BufferedWriter(new OutputStreamWriter(this.s.getOutputStream(), StandardCharsets.ISO_8859_1));
                 System.out.println("Got client connection!");
             } catch (IOException var2) {
                 var2.printStackTrace();
