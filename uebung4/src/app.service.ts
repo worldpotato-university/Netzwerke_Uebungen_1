@@ -1,17 +1,18 @@
 import { HttpException, Injectable } from '@nestjs/common';
 import { Zusteller, ZustellerState } from './zusteller';
+import { HereService } from './here.service';
 
 @Injectable()
 export class AppService {
   public static zusteller: Zusteller[] = [];
 
-  constructor() {
-    AppService.zusteller.push(new Zusteller('Hans'));
-    AppService.zusteller.push(new Zusteller('Georg'));
-    AppService.zusteller.push(new Zusteller('Anna'));
+  constructor(private readonly hereService: HereService) {
+    AppService.zusteller.push(new Zusteller('Hans', 0));
+    AppService.zusteller.push(new Zusteller('Georg', 1));
+    AppService.zusteller.push(new Zusteller('Anna', 2));
   }
 
-  createJob(id: number, lat: number, lon: number, temp: number) {
+  async createJob(id: number, street: string, temp: number) {
     const zust = AppService.zusteller[id];
     if (zust.status !== ZustellerState.READY) {
       throw new HttpException('Der Zusteller ist nicht bereit eine Bestellung entgegen zu nehmen', 405); // 405 Method Not Allowed
@@ -19,9 +20,22 @@ export class AppService {
 
     zust.status = ZustellerState.DELIVERING;
     zust.temperature = temp;
-    zust.startDelivery = new Date().getUTCMilliseconds();
-    // TODO Route berechnen
-    // TODO stopDelivery setzen
+    zust.startDelivery = Date.now();
+    zust.lat = 48.155049;
+    zust.lon = 11.555903;
+    const response = (await this.hereService.geocode(street)).Response;
+    if (response.View &&
+      response.View.length !== 0 &&
+      response.View[0].Result &&
+      response.View[0].Result.length !== 0 &&
+      response.View[0].Result[0].Location.NavigationPosition &&
+      response.View[0].Result[0].Location.NavigationPosition.length !== 0) {
+      zust.latDestination = response.View[0].Result[0].Location.NavigationPosition[0].Latitude;
+      zust.lonDestination = response.View[0].Result[0].Location.NavigationPosition[0].Longitude;
+    } else {
+      // TODO throw correct http error
+      throw 'no address found';
+    }
   }
 
   updateJob(id: number, lat: number, lon: number) {
@@ -30,8 +44,11 @@ export class AppService {
       throw new HttpException('Der Zusteller ist gerade nicht unterwegs.', 405); // 405 Method Not Allowed
     }
 
-    // TODO Route berechnen
-    // TODO stopDelivery setzen
+    const dTime = Math.ceil((Date.now() - zust.startDelivery) / (1000 * 60));
+    zust.temperature = zust.temperature - dTime;
+    zust.lat = lat;
+    zust.lon = lon;
+    zust.startDelivery = Date.now();
   }
 
   deleteJob(id: number) {

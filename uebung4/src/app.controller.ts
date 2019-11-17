@@ -2,8 +2,7 @@ import { Body, Controller, Delete, Get, HttpException, Param, Post, Put } from '
 import { AppService } from './app.service';
 
 export interface IDelivery {
-  lat: number;
-  lon: number;
+  destinantion: string;
   temp: number;
 }
 
@@ -18,21 +17,15 @@ export class AppController {
   }
 
   @Post(':id')
-  createJob(@Param('id') id: number, @Body()delivery: IDelivery) {
+  async createJob(@Param('id') id: number, @Body()delivery: IDelivery) {
     // Input validation
     if (id === null || id === undefined || id < 0 || id > 2) {
       throw new HttpException('Id is out of range or not defined', 400); // bad request
     }
-    if (delivery.lat === null || delivery.lat === undefined || delivery.lat < -90 || delivery.lat > 90) {
+    if (delivery.destinantion === null || delivery.destinantion === undefined) {
       throw new HttpException('Lat is out of range or not defined', 400); // Bad request
     }
-    if (delivery.lon === null || delivery.lon === undefined || delivery.lon < -180 || delivery.lon > 180) {
-      throw new HttpException('Lon is out of range or not defined', 400); // Bad request
-    }
-    if (id === 42) {
-      throw new HttpException('I\'m a teapot', 418); // https://en.wikipedia.org/wiki/HTTP_418
-    }
-    this.appService.createJob(id, delivery.lat, delivery.lon, delivery.temp);
+    await this.appService.createJob(id, delivery.destinantion, delivery.temp);
   }
 
   @Delete(':id')

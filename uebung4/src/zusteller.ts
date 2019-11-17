@@ -1,16 +1,16 @@
 export class Zusteller {
-  constructor(public readonly name: string) {
-    this.status = ZustellerState.READY;
+  constructor(public readonly name: string, public readonly lamp: number) {
+    this.status = ZustellerState.DELIVERED;
   }
 
   status: ZustellerState;
   startDelivery: number;
   stopDelivery: number;
   temperature: number;
-
-  public async checkStatus(): Promise<void> {
-    // TODO
-  }
+  lat: number;
+  lon: number;
+  latDestination: number;
+  lonDestination: number;
 }
 
 export enum ZustellerState {

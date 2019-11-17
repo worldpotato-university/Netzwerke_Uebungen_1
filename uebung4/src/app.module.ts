@@ -4,6 +4,7 @@ import { AppService } from './app.service';
 import { ScheduleModule } from 'nest-schedule';
 import { ScheduleService } from './schedule.service';
 import { HereService } from './here.service';
+import { HueService } from './hue.service';
 
 @Module({
   imports: [
@@ -15,6 +16,7 @@ import { HereService } from './here.service';
     AppService,
     ScheduleService,
     HereService,
+    HueService,
   ],
 })
 export class AppModule {}
