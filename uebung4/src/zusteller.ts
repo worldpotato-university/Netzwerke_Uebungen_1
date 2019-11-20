@@ -1,3 +1,5 @@
+import { LampColor } from './hue.service';
+
 export class Zusteller {
   constructor(public readonly name: string, public readonly lamp: number) {
     this.status = ZustellerState.DELIVERED;
@@ -11,6 +13,7 @@ export class Zusteller {
   lon: number;
   latDestination: number;
   lonDestination: number;
+  lampColor: LampColor;
 }
 
 export enum ZustellerState {

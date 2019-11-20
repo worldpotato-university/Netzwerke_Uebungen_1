@@ -16,7 +16,7 @@ export class ScheduleService extends NestSchedule {
 
   @Interval(5000, { waiting: true, enable: true })
   async intervalJob() {
-    console.log('Run background job.');
+    // console.log('Run background job.');
 
     await Promise.all(AppService.zusteller.map(async zusteller => {
       switch (zusteller.status) {
@@ -44,20 +44,37 @@ export class ScheduleService extends NestSchedule {
       }
       switch (zusteller.status) {
         case ZustellerState.READY:
-          await this.hueService.color(zusteller.lamp, LampColor.GREEN);
+          if (zusteller.lampColor !== LampColor.GREEN) {
+            zusteller.lampColor = LampColor.GREEN;
+            await this.hueService.color(zusteller).catch(() => {
+              // TODO handle error
+            });
+          }
           break;
 
         case ZustellerState.DELIVERED:
-          await this.hueService.color(zusteller.lamp, LampColor.OFF);
+          if (zusteller.lampColor !== LampColor.OFF) {
+            zusteller.lampColor = LampColor.OFF;
+            await this.hueService.color(zusteller).catch(() => {
+              // TODO handle error
+            });
+          }
           break;
 
         case ZustellerState.DELIVERING:
           const dMinutes = Math.ceil((zusteller.stopDelivery - zusteller.startDelivery) / (1000 * 60));
           const deliveryTemp = zusteller.temperature - dMinutes;
           if (deliveryTemp < 60) {
-            await this.hueService.color(zusteller.lamp, LampColor.BLUE_BLINKING);
+            if (zusteller.lampColor !== LampColor.BLUE_BLINKING && zusteller.lampColor !== LampColor.BLUE_BLINKING_OFF) {
+              zusteller.lampColor = LampColor.BLUE_BLINKING;
+              await this.hueService.color(zusteller).catch(() => {
+                // TODO handle error
+              });
+            }
           } else {
-            await this.hueService.color(zusteller.lamp, LampColor.ORANGE);
+            if (zusteller.lampColor !== LampColor.ORANGE) {
+              zusteller.lampColor = LampColor.ORANGE;
+            }
           }
       }
     }));

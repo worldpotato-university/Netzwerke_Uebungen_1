@@ -7,9 +7,9 @@ export class AppService {
   public static zusteller: Zusteller[] = [];
 
   constructor(private readonly hereService: HereService) {
-    AppService.zusteller.push(new Zusteller('Hans', 0));
-    AppService.zusteller.push(new Zusteller('Georg', 1));
-    AppService.zusteller.push(new Zusteller('Anna', 2));
+    AppService.zusteller.push(new Zusteller('Hans', 1));
+    AppService.zusteller.push(new Zusteller('Georg', 2));
+    AppService.zusteller.push(new Zusteller('Anna', 3));
   }
 
   async createJob(id: number, street: string, temp: number) {
