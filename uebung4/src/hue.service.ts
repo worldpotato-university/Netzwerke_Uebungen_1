@@ -22,6 +22,7 @@ export class HueService extends NestSchedule {
     } else {
       data = {
         on: true,
+        // TODO rot muss orange sein
         hue: zusteller.lampColor === LampColor.BLUE_BLINKING ? 46920 :
           (zusteller.lampColor === LampColor.ORANGE ? 65535 :
               (zusteller.lampColor === LampColor.GREEN ? 25500 : 0)

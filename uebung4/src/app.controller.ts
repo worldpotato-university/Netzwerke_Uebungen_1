@@ -23,7 +23,7 @@ export class AppController {
       throw new HttpException('Id is out of range or not defined', 400); // bad request
     }
     if (delivery.destinantion === null || delivery.destinantion === undefined) {
-      throw new HttpException('Lat is out of range or not defined', 400); // Bad request
+      throw new HttpException('Destination is not defined', 400); // Bad request
     }
     await this.appService.createJob(id, delivery.destinantion, delivery.temp);
   }

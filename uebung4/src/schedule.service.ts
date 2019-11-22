@@ -33,12 +33,17 @@ export class ScheduleService extends NestSchedule {
             zusteller.status = ZustellerState.DELIVERED;
             zusteller.stopDelivery = 0;
           } else {
-            const route = (await this.hereService.routing(zusteller.latDestination, zusteller.lonDestination, zusteller.lat, zusteller.lon)).response;
-            if (route.route && route.route.length !== 0) {
-              zusteller.stopDelivery = zusteller.startDelivery + (route.route[0].summary.travelTime * 1000);
-            } else {
-              // TODO throw correct http error
-              throw 'no address found';
+            try {
+              const route = (await this.hereService.routing(zusteller.latDestination, zusteller.lonDestination, zusteller.lat, zusteller.lon)).response;
+              if (route.route && route.route.length !== 0) {
+                zusteller.stopDelivery = zusteller.startDelivery + (route.route[0].summary.travelTime * 1000);
+              } else {
+                // TODO throw correct http error
+                throw 'no address found';
+              }
+
+            } catch (error) {
+              console.log(JSON.stringify(error));
             }
           }
       }
@@ -74,6 +79,9 @@ export class ScheduleService extends NestSchedule {
           } else {
             if (zusteller.lampColor !== LampColor.ORANGE) {
               zusteller.lampColor = LampColor.ORANGE;
+              await this.hueService.color(zusteller).catch(() => {
+                // TODO handle error
+              });
             }
           }
       }
