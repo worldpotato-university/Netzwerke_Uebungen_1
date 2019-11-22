@@ -1,4 +1,4 @@
-export interface IRoutingRsponse {
+export interface IRoutingResponse {
   response: {
     route: Array<{
       summary: {
