@@ -21,11 +21,11 @@ export class ScheduleService extends NestSchedule {
     await Promise.all(AppService.zusteller.map(async zusteller => {
       switch (zusteller.status) {
         case ZustellerState.READY:
-          // TODO: nothing to here?
+          console.log(`${zusteller.name} messenger is ready.`);
           break;
 
         case ZustellerState.DELIVERED:
-          // TODO: nothing to here?
+          console.log(`${zusteller.name} has delivered.`);
           break;
 
         case ZustellerState.DELIVERING:
@@ -38,8 +38,7 @@ export class ScheduleService extends NestSchedule {
               if (route.route && route.route.length !== 0) {
                 zusteller.stopDelivery = zusteller.startDelivery + (route.route[0].summary.travelTime * 1000);
               } else {
-                // TODO throw correct http error
-                throw 'no address found';
+                throw 'Corrupt message from messenger. Don\'t change the arriving time';
               }
 
             } catch (error) {
@@ -52,7 +51,7 @@ export class ScheduleService extends NestSchedule {
           if (zusteller.lampColor !== LampColor.GREEN) {
             zusteller.lampColor = LampColor.GREEN;
             await this.hueService.color(zusteller).catch(() => {
-              // TODO handle error
+              throw `hue-service is corrupt - can set lamp color to GREEN for ${zusteller.name}`
             });
           }
           break;
@@ -61,7 +60,7 @@ export class ScheduleService extends NestSchedule {
           if (zusteller.lampColor !== LampColor.OFF) {
             zusteller.lampColor = LampColor.OFF;
             await this.hueService.color(zusteller).catch(() => {
-              // TODO handle error
+              throw `hue-service is corrupt - can not switch of the lamp for ${zusteller.name}`
             });
           }
           break;
@@ -73,14 +72,14 @@ export class ScheduleService extends NestSchedule {
             if (zusteller.lampColor !== LampColor.BLUE_BLINKING && zusteller.lampColor !== LampColor.BLUE_BLINKING_OFF) {
               zusteller.lampColor = LampColor.BLUE_BLINKING;
               await this.hueService.color(zusteller).catch(() => {
-                // TODO handle error
+                throw `hue-service is corrupt - can not set lamp color to blinking-blue for ${zusteller.name}`
               });
             }
           } else {
             if (zusteller.lampColor !== LampColor.ORANGE) {
               zusteller.lampColor = LampColor.ORANGE;
               await this.hueService.color(zusteller).catch(() => {
-                // TODO handle error
+                throw `hue-service is corrupt - can not set lamp color to orange for ${zusteller.name}`
               });
             }
           }
