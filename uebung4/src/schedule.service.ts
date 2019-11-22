@@ -25,7 +25,7 @@ export class ScheduleService extends NestSchedule {
           break;
 
         case ZustellerState.DELIVERED:
-          console.log(`${zusteller.name} has delivered.`);
+          console.log(`${zusteller.name} is ready.`);
           break;
 
         case ZustellerState.DELIVERING:

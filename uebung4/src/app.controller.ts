@@ -2,7 +2,7 @@ import { Body, Controller, Delete, Get, HttpException, Param, Post, Put } from '
 import { AppService } from './app.service';
 
 export interface IDelivery {
-  destinantion: string;
+  destination: string;
   temp: number;
 }
 
@@ -22,21 +22,21 @@ export class AppController {
     if (id === null || id === undefined || id < 0 || id > 2) {
       throw new HttpException('Id is out of range or not defined', 400); // bad request
     }
-    if (delivery.destinantion === null || delivery.destinantion === undefined) {
+    if (delivery.destination === null || delivery.destination === undefined) {
       throw new HttpException('Destination is not defined', 400); // Bad request
     }
-    await this.appService.createJob(id, delivery.destinantion, delivery.temp);
+    await this.appService.createJob(id, delivery.destination, delivery.temp);
   }
 
-  @Delete(':id')
-  deleteJob(@Param('id') id: number) {
+  @Delete()
+  deleteJob(@Body('id') id: number) {
     // Input validation
     if (id === null || id === undefined || id < 0 || id > 2) {
       throw new HttpException('Id is out of range or not defined', 400); // bad request
     }
     this.appService.deleteJob(id);
   }
-
+// TODO change put and post
   @Put(':id')
   updateJob(@Param('id') id: number, @Body()delivery: IDeliveryUpdate) {
     // Input validation
