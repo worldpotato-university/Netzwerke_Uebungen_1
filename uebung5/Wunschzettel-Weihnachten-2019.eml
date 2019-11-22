@@ -1,0 +1,57 @@
+Received: from BADWLRZ-SWMBX05.ads.mwn.de (2001:4ca0:0:108::161) by
+ BADWLRZ-SWMBX05.ads.mwn.de (2001:4ca0:0:108::161) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id
+ 15.1.1713.5 via Mailbox Transport; Fri, 22 Nov 2019 11:01:32 +0100
+Received: from BADWLRZ-SWMBX01.ads.mwn.de (2001:4ca0:0:108::157) by
+ BADWLRZ-SWMBX05.ads.mwn.de (2001:4ca0:0:108::161) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id
+ 15.1.1713.5; Fri, 22 Nov 2019 11:01:31 +0100
+Received: from postforw1.mail.lrz.de (2001:4ca0:0:116::a9c:63d) by
+ BADWLRZ-SWMBX01.ads.mwn.de (2001:4ca0:0:108::157) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id
+ 15.1.1713.5 via Frontend Transport; Fri, 22 Nov 2019 11:01:31 +0100
+Received: from mailout1.lrz.de (lxmhs65.srv.lrz.de [10.156.6.165])
+	by postforw1.mail.lrz.de (Postfix) with ESMTP id 47KBlv5j4gzyTs
+	for <fstrobel@hm.edu>; Fri, 22 Nov 2019 11:01:31 +0100 (CET)
+Received: from lxmhs65.srv.lrz.de (localhost [127.0.0.1])
+	by mailout1.lrz.de (Postfix) with ESMTP id 47KBlv5QS9z1xrk
+	for <fstrobel@hm.edu>; Fri, 22 Nov 2019 11:01:31 +0100 (CET)
+X-Virus-Scanned: by amavisd-new at lrz.de in lxmhs65.srv.lrz.de
+Received: from mailout1.lrz.de ([127.0.0.1])
+	by lxmhs65.srv.lrz.de (lxmhs65.srv.lrz.de [127.0.0.1]) (amavisd-new, port 10002)
+	with ESMTP id 1QqVvCPaNvrG for <fstrobel@hm.edu>;
+	Fri, 22 Nov 2019 11:01:31 +0100 (CET)
+Received: from mailrelay4.rz.fh-muenchen.de (mailrelay4.rz.fh-muenchen.de [129.187.244.104])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+	(No client certificate requested)
+	by mailout1.lrz.de (Postfix) with ESMTPS id 47KBlv1Rs8z1xwt
+	for <fstrobel@hm.edu>; Fri, 22 Nov 2019 11:01:31 +0100 (CET)
+Received: from localhost (localhost [127.0.0.1])
+	by mailrelay4.rz.fh-muenchen.de (Postfix) with ESMTP id EA67A38133821
+	for <fstrobel@hm.edu>; Fri, 22 Nov 2019 11:01:30 +0100 (CET)
+X-Virus-Scanned: amavisd-new at hm.edu
+X-Amavis-Alert: BAD HEADER SECTION, Missing required header field: "Date"
+Received: from mailrelay4.rz.fh-muenchen.de ([127.0.0.1])
+	by localhost (mailrelay4.rz.fh-muenchen.de [127.0.0.1]) (amavisd-new, port 10024)
+	with LMTP id C-i8WM4EdMMd for <fstrobel@hm.edu>;
+	Fri, 22 Nov 2019 11:01:30 +0100 (CET)
+Received: from cs.hm.edu (unknown [10.159.2.26])
+	by mailrelay4.rz.fh-muenchen.de (Postfix) with SMTP id 5F3C338000410
+	for <fstrobel@hm.edu>; Fri, 22 Nov 2019 10:59:30 +0100 (CET)
+Subject: Wunschzettel Weihnachten 2019
+From: Rainer Herbst <rainer@herbstlich.de>
+To: Willibald Weihnachtsmann <weihnachtsmann.willi@heaven.org>
+Message-ID: <20191122100130.EA67A38133821@mailrelay4.rz.fh-muenchen.de>
+Date: Fri, 22 Nov 2019 11:01:30 +0100
+Return-Path: fstrobel@hm.edu
+X-MS-Exchange-Organization-Network-Message-Id: f14dc629-982c-472f-81df-08d76f32f372
+Content-Type: text/plain
+X-MS-Exchange-Organization-AVStamp-Mailbox: Sophos;-1477620222;0;PM
+X-MS-Exchange-Organization-AuthSource: BADWLRZ-SWMBX01.ads.mwn.de
+X-MS-Exchange-Organization-AuthAs: Anonymous
+X-MS-Exchange-Transport-EndToEndLatency: 00:00:00.1919057
+X-MS-Exchange-Processed-By-BccFoldering: 15.01.1713.009
+MIME-Version: 1.0
+
+ ein kurzer Nachrichtentext Ihrer Wahl
+,
