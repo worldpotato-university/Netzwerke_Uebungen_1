@@ -31,9 +31,9 @@ export class HueService extends NestSchedule {
     }
 
     const req = http.request({
-      hostname: 'localhost',
-      port: 8000,
-      path: `/api/newdeveloper/lights/${zusteller.lamp}/state`,
+      hostname: '10.28.209.13',
+      port: 9002,
+      path: `/api/2217334838210e7f244460f83b42026f/lights/${zusteller.lamp}/state`,
       method: 'PUT',
     }, res => {
       // TODO check status response
