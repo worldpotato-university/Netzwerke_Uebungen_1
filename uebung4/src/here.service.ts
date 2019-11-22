@@ -1,6 +1,6 @@
 import { HttpService, Injectable } from '@nestjs/common';
 import { IGeocodeResponse } from './interfaces/geocode-response.interface';
-import { IRoutingRsponse } from './interfaces/routing-rsponse.interface';
+import { IRoutingResponse } from './interfaces/routing-rsponse.interface';
 
 @Injectable()
 export class HereService {
@@ -26,9 +26,9 @@ export class HereService {
     return response.data as IGeocodeResponse;
   }
 
-  public async routing(latDestination: number, lngDestination: number, lat: number, lng: number): Promise<IRoutingRsponse> {
+  public async routing(latDestination: number, lngDestination: number, lat: number, lng: number): Promise<IRoutingResponse> {
     const url = `${this.buidlPath(HereService.baseUrlRouting, HereService.routingPath)}&` +
       `waypoint0=geo!${lat},${lng}&waypoint1=geo!${latDestination},${lngDestination}&mode=fastest;car;traffic:disabled`;
-    return (await this.httpService.get(url).toPromise()).data as IRoutingRsponse;
+    return (await this.httpService.get(url).toPromise()).data as IRoutingResponse;
   }
 }
