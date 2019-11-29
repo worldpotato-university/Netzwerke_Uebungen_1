@@ -1,0 +1,184 @@
+{\rtf1\ansi\ansicpg1252\cocoartf2509
+\cocoatextscaling0\cocoaplatform0{\fonttbl\f0\fswiss\fcharset0 Helvetica;}
+{\colortbl;\red255\green255\blue255;}
+{\*\expandedcolortbl;;}
+\paperw11900\paperh16840\margl1440\margr1440\vieww10800\viewh8400\viewkind0
+\pard\tx566\tx1133\tx1700\tx2267\tx2834\tx3401\tx3968\tx4535\tx5102\tx5669\tx6236\tx6803\pardirnatural\partightenfactor0
+
+\f0\fs24 \cf0 network@asterix:~$ dig www.ietf.org\
+\
+; <<>> DiG 9.11.3-1ubuntu1.9-Ubuntu <<>> www.ietf.org\
+;; global options: +cmd\
+;; Got answer:\
+;; ->>HEADER<<- opcode: QUERY, status: NOERROR, id: 25257\
+;; flags: qr rd ra; QUERY: 1, ANSWER: 3, AUTHORITY: 0, ADDITIONAL: 1\
+\
+;; OPT PSEUDOSECTION:\
+; EDNS: version: 0, flags:; udp: 65494\
+;; QUESTION SECTION:\
+;www.ietf.org.			IN	A\
+\
+;; ANSWER SECTION:\
+www.ietf.org.		1800	IN	CNAME	www.ietf.org.cdn.cloudflare.net.\
+www.ietf.org.cdn.cloudflare.net. 299 IN	A	104.20.1.85\
+www.ietf.org.cdn.cloudflare.net. 299 IN	A	104.20.0.85\
+\
+;; Query time: 665 msec\
+;; SERVER: 127.0.0.53#53(127.0.0.53)\
+;; WHEN: Fri Nov 29 15:36:46 CET 2019\
+;; MSG SIZE  rcvd: 118\
+\
+network@asterix:~$ dig @localhost www.ietf.org\
+\
+; <<>> DiG 9.11.3-1ubuntu1.9-Ubuntu <<>> @localhost www.ietf.org\
+; (1 server found)\
+;; global options: +cmd\
+;; Got answer:\
+;; ->>HEADER<<- opcode: QUERY, status: NOERROR, id: 7619\
+;; flags: qr rd ra ad; QUERY: 1, ANSWER: 3, AUTHORITY: 13, ADDITIONAL: 1\
+\
+;; OPT PSEUDOSECTION:\
+; EDNS: version: 0, flags:; udp: 4096\
+; COOKIE: e2dfa12b45e712c4a0831b2b5de12d126c513866f02047e2 (good)\
+;; QUESTION SECTION:\
+;www.ietf.org.			IN	A\
+\
+;; ANSWER SECTION:\
+www.ietf.org.		1583	IN	CNAME	www.ietf.org.cdn.cloudflare.net.\
+www.ietf.org.cdn.cloudflare.net. 127 IN	A	104.20.0.85\
+www.ietf.org.cdn.cloudflare.net. 127 IN	A	104.20.1.85\
+\
+;; AUTHORITY SECTION:\
+.			83876	IN	NS	d.root-servers.net.\
+.			83876	IN	NS	b.root-servers.net.\
+.			83876	IN	NS	j.root-servers.net.\
+.			83876	IN	NS	h.root-servers.net.\
+.			83876	IN	NS	i.root-servers.net.\
+.			83876	IN	NS	f.root-servers.net.\
+.			83876	IN	NS	g.root-servers.net.\
+.			83876	IN	NS	k.root-servers.net.\
+.			83876	IN	NS	c.root-servers.net.\
+.			83876	IN	NS	e.root-servers.net.\
+.			83876	IN	NS	a.root-servers.net.\
+.			83876	IN	NS	m.root-servers.net.\
+.			83876	IN	NS	l.root-servers.net.\
+\
+;; Query time: 127 msec\
+;; SERVER: 127.0.0.1#53(127.0.0.1)\
+;; WHEN: Fri Nov 29 15:37:06 CET 2019\
+;; MSG SIZE  rcvd: 354\
+\
+network@asterix:~$ dig @localhost a.netze1.cs.hm.edu\
+\
+; <<>> DiG 9.11.3-1ubuntu1.9-Ubuntu <<>> @localhost a.netze1.cs.hm.edu\
+; (1 server found)\
+;; global options: +cmd\
+;; Got answer:\
+;; ->>HEADER<<- opcode: QUERY, status: NOERROR, id: 32038\
+;; flags: qr aa rd ra; QUERY: 1, ANSWER: 1, AUTHORITY: 1, ADDITIONAL: 2\
+\
+;; OPT PSEUDOSECTION:\
+; EDNS: version: 0, flags:; udp: 4096\
+; COOKIE: d352b7af5b2bcec8e7b232df5de12d5dfee91672b56923fc (good)\
+;; QUESTION SECTION:\
+;a.netze1.cs.hm.edu.		IN	A\
+\
+;; ANSWER SECTION:\
+a.netze1.cs.hm.edu.	604800	IN	A	10.0.2.13\
+\
+;; AUTHORITY SECTION:\
+netze1.cs.hm.edu.	604800	IN	NS	s.netze1.cs.hm.edu.\
+\
+;; ADDITIONAL SECTION:\
+s.netze1.cs.hm.edu.	604800	IN	A	10.0.2.15\
+\
+;; Query time: 0 msec\
+;; SERVER: 127.0.0.1#53(127.0.0.1)\
+;; WHEN: Fri Nov 29 15:38:21 CET 2019\
+;; MSG SIZE  rcvd: 123\
+\
+network@asterix:~$ dig @localhost b.netze1.cs.hm.edu\
+\
+; <<>> DiG 9.11.3-1ubuntu1.9-Ubuntu <<>> @localhost b.netze1.cs.hm.edu\
+; (1 server found)\
+;; global options: +cmd\
+;; Got answer:\
+;; ->>HEADER<<- opcode: QUERY, status: NOERROR, id: 57669\
+;; flags: qr aa rd ra; QUERY: 1, ANSWER: 1, AUTHORITY: 1, ADDITIONAL: 2\
+\
+;; OPT PSEUDOSECTION:\
+; EDNS: version: 0, flags:; udp: 4096\
+; COOKIE: 74be8901cdc5a770029886505de12d62b5b8798eb4313594 (good)\
+;; QUESTION SECTION:\
+;b.netze1.cs.hm.edu.		IN	A\
+\
+;; ANSWER SECTION:\
+b.netze1.cs.hm.edu.	604800	IN	A	10.0.2.14\
+\
+;; AUTHORITY SECTION:\
+netze1.cs.hm.edu.	604800	IN	NS	s.netze1.cs.hm.edu.\
+\
+;; ADDITIONAL SECTION:\
+s.netze1.cs.hm.edu.	604800	IN	A	10.0.2.15\
+\
+;; Query time: 0 msec\
+;; SERVER: 127.0.0.1#53(127.0.0.1)\
+;; WHEN: Fri Nov 29 15:38:26 CET 2019\
+;; MSG SIZE  rcvd: 123\
+\
+network@asterix:~$ dig @localhost s.netze1.cs.hm.edu\
+\
+; <<>> DiG 9.11.3-1ubuntu1.9-Ubuntu <<>> @localhost s.netze1.cs.hm.edu\
+; (1 server found)\
+;; global options: +cmd\
+;; Got answer:\
+;; ->>HEADER<<- opcode: QUERY, status: NOERROR, id: 12860\
+;; flags: qr aa rd ra; QUERY: 1, ANSWER: 1, AUTHORITY: 1, ADDITIONAL: 1\
+\
+;; OPT PSEUDOSECTION:\
+; EDNS: version: 0, flags:; udp: 4096\
+; COOKIE: dc19f28f241220f3ad50d8325de12d66028f4db61f3b27ad (good)\
+;; QUESTION SECTION:\
+;s.netze1.cs.hm.edu.		IN	A\
+\
+;; ANSWER SECTION:\
+s.netze1.cs.hm.edu.	604800	IN	A	10.0.2.15\
+\
+;; AUTHORITY SECTION:\
+netze1.cs.hm.edu.	604800	IN	NS	s.netze1.cs.hm.edu.\
+\
+;; Query time: 0 msec\
+;; SERVER: 127.0.0.1#53(127.0.0.1)\
+;; WHEN: Fri Nov 29 15:38:30 CET 2019\
+;; MSG SIZE  rcvd: 105\
+\
+network@asterix:~$ dig @localhost netze1.cs.hm.edu MX\
+\
+; <<>> DiG 9.11.3-1ubuntu1.9-Ubuntu <<>> @localhost netze1.cs.hm.edu MX\
+; (1 server found)\
+;; global options: +cmd\
+;; Got answer:\
+;; ->>HEADER<<- opcode: QUERY, status: NOERROR, id: 42236\
+;; flags: qr aa rd ra; QUERY: 1, ANSWER: 1, AUTHORITY: 1, ADDITIONAL: 2\
+\
+;; OPT PSEUDOSECTION:\
+; EDNS: version: 0, flags:; udp: 4096\
+; COOKIE: 3483d21109ad39a50ec420de5de12d7b8b0c361d9fb51411 (good)\
+;; QUESTION SECTION:\
+;netze1.cs.hm.edu.		IN	MX\
+\
+;; ANSWER SECTION:\
+netze1.cs.hm.edu.	604800	IN	MX	10 mailserver.netze1.cs.hm.edu.\
+\
+;; AUTHORITY SECTION:\
+netze1.cs.hm.edu.	604800	IN	NS	s.netze1.cs.hm.edu.\
+\
+;; ADDITIONAL SECTION:\
+s.netze1.cs.hm.edu.	604800	IN	A	10.0.2.15\
+\
+;; Query time: 0 msec\
+;; SERVER: 127.0.0.1#53(127.0.0.1)\
+;; WHEN: Fri Nov 29 15:38:51 CET 2019\
+;; MSG SIZE  rcvd: 132\
+\
+}
