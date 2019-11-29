@@ -3,6 +3,7 @@ package hm.edu.cs.uebung6;
 import java.io.IOException;
 import java.net.DatagramPacket;
 import java.net.DatagramSocket;
+import java.net.InetAddress;
 import java.net.SocketTimeoutException;
 import java.time.Period;
 import java.util.Date;
@@ -18,33 +19,37 @@ public class UDP extends TP {
         int counter = 0;
         Date start = null;
         Date stop = null;
-        DatagramSocket socket = new DatagramSocket(20000);
-        socket.setSoTimeout(10000);
-        while (true) {
-            DatagramPacket packet = new DatagramPacket(new byte[_packetSize], _packetSize);
-            try {
-                socket.receive(packet);
-                counter++;
-                if (start == null)
-                    start = new Date();
-                stop = new Date();
-            } catch (SocketTimeoutException ex) {
-                break;
+        try (DatagramSocket socket = new DatagramSocket(20000)) {
+            socket.setSoTimeout(10000);
+            while (true) {
+                DatagramPacket packet = new DatagramPacket(new byte[_packetSize], _packetSize);
+                try {
+                    socket.receive(packet);
+                    counter++;
+                    if (start == null)
+                        start = new Date();
+                    stop = new Date();
+                } catch (SocketTimeoutException ex) {
+                    break;
+                }
+            }
+            if (start == null || stop == null)
+                System.out.println("Konnte keine Pakete empfangen!");
+            else {
+                long millis = Math.abs(stop.getTime() - start.getTime());
+                System.out.println("Es wurden " + counter + " Pakete empfangen in " + millis + " ms");
+                System.out.println("Empfangsrate: " + (counter / (millis / 1000.0)) + " Pakete/s");
+                System.out.println("Goodput: " + (counter / (millis / 1000.0) * _packetSize) + " Byte/s");
+                // UDP HEADER 8 Byte + IPv4 HEADER 20 Byte
+                System.out.println("Troughtput: " + (counter / (millis / 1000.0) * (_packetSize + 28)) + " Byte/s");
             }
         }
-        if (start == null || stop == null)
-            System.out.println("Konnte keine Pakete empfangen!");
-        else {
-            long millis = Math.abs(stop.getTime() - start.getTime());
-            System.out.println("Es wurden " + counter + " Pakete empfangen in " + millis + "ms");
-        }
-
     }
 
     @Override
-    void executeClient(Scanner scanner) throws IOException {
-        System.out.print("Sendezeit in Sekunden: ");
-        String inputTime = scanner.next();
+    void executeClient(Scanner scanner) throws IOException, InterruptedException {
+        System.out.print("Anzahl der Pakete: ");
+        String inputPackets = scanner.next();
         System.out.println();
 
         System.out.print("Pause nach jedem N-ten Paket in Anzahl der Paketen. N: ");
@@ -55,16 +60,24 @@ public class UDP extends TP {
         String inputK = scanner.next();
         System.out.println();
 
-        int time, N, K;
+        int packets, N, K;
         try {
-            time = Integer.parseInt(inputTime);
+            packets = Integer.parseInt(inputPackets);
             N = Integer.parseInt(inputN);
             K = Integer.parseInt(inputK);
         } catch (NumberFormatException ex) {
-            System.out.println("Die Eingaben müssen ganze Zahjlen sein.");
+            System.out.println("Die Eingaben müssen ganze Zahlen sein.");
             return;
         }
 
-        // TODO send packets
+        try (DatagramSocket toSocket = new DatagramSocket()) {
+            for (int i = 0; i < packets; i++) {
+                DatagramPacket packet = new DatagramPacket(new byte[_packetSize], _packetSize, InetAddress.getByName("127.0.0.1"), 20000);
+                toSocket.send(packet);
+                if ((i + 1) % N == 0) {
+                    Thread.sleep(K);
+                }
+            }
+        }
     }
 }

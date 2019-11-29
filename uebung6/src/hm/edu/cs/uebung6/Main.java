@@ -14,11 +14,13 @@ public class Main {
                 loop(scanner);
             } catch (IOException e) {
                 e.printStackTrace();
+            } catch (InterruptedException e) {
+                e.printStackTrace();
             }
         }
     }
 
-    private static void loop(Scanner scanner) throws IOException {
+    private static void loop(Scanner scanner) throws IOException, InterruptedException {
         System.out.println("============================Menu=================================== \n" +
                 "|++++++++++++++Bitte die gewuenschte Option waehlen.++++++++++++++| \n" +
                 "| UDP                                                             | \n" +

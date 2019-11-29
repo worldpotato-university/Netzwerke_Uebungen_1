@@ -11,7 +11,7 @@ public abstract class TP {
         _packetSize = packetSize;
     }
 
-    public void execute(Scanner scanner) throws IOException {
+    public void execute(Scanner scanner) throws IOException, InterruptedException {
         System.out.println("============================Menu=================================== \n" +
                 "|++++++++++++++Bitte die gewuenschte Option waehlen.++++++++++++++| \n" +
                 "| Client                                                          | \n" +
@@ -34,5 +34,5 @@ public abstract class TP {
     }
 
     abstract void executeServer(Scanner scanner) throws IOException;
-    abstract void executeClient(Scanner scanner) throws IOException;
+    abstract void executeClient(Scanner scanner) throws IOException, InterruptedException;
 }
