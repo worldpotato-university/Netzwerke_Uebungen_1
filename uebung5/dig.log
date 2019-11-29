@@ -1,0 +1,47 @@
+dig www.ietf.org
+
+; <<>> DiG 9.14.7 <<>> www.ietf.org
+;; global options: +cmd
+;; Got answer:
+;; ->>HEADER<<- opcode: QUERY, status: NOERROR, id: 31826
+;; flags: qr rd ra ad; QUERY: 1, ANSWER: 3, AUTHORITY: 5, ADDITIONAL: 11
+
+;; OPT PSEUDOSECTION:
+; EDNS: version: 0, flags:; udp: 4096
+;; QUESTION SECTION:
+;www.ietf.org.			IN	A
+
+;; ANSWER SECTION:
+www.ietf.org.		1575	IN	CNAME	www.ietf.org.cdn.cloudflare.net.
+www.ietf.org.cdn.cloudflare.net. 75 IN	A	104.20.0.85
+www.ietf.org.cdn.cloudflare.net. 75 IN	A	104.20.1.85
+
+;; AUTHORITY SECTION:
+cloudflare.net.		60585	IN	NS	ns5.cloudflare.net.
+cloudflare.net.		60585	IN	NS	ns4.cloudflare.net.
+cloudflare.net.		60585	IN	NS	ns2.cloudflare.net.
+cloudflare.net.		60585	IN	NS	ns3.cloudflare.net.
+cloudflare.net.		60585	IN	NS	ns1.cloudflare.net.
+
+;; ADDITIONAL SECTION:
+ns1.cloudflare.net.	729	IN	A	173.245.59.31
+ns1.cloudflare.net.	162466	IN	AAAA	2400:cb00:2049:1::adf5:3b1f
+ns2.cloudflare.net.	365	IN	A	198.41.222.131
+ns2.cloudflare.net.	162466	IN	AAAA	2400:cb00:2049:1::c629:de83
+ns3.cloudflare.net.	29292	IN	A	198.41.222.31
+ns3.cloudflare.net.	162466	IN	AAAA	2400:cb00:2049:1::c629:de1f
+ns4.cloudflare.net.	29292	IN	A	198.41.223.131
+ns4.cloudflare.net.	124774	IN	AAAA	2400:cb00:2049:1::c629:df83
+ns5.cloudflare.net.	124774	IN	A	198.41.223.31
+ns5.cloudflare.net.	124774	IN	AAAA	2400:cb00:2049:1::c629:df1f
+
+;; Query time: 3 msec
+;; SERVER: 10.156.33.53#53(10.156.33.53)
+;; WHEN: Fri Nov 29 11:02:16 CET 2019
+;; MSG SIZE  rcvd: 428
+
+
+============================
+Results:
+    time: 3ms
+    IPs: 104.20.0.85, 104.20.1.85
