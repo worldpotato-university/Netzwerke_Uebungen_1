@@ -21,17 +21,17 @@ public class UDP extends TP {
         Date stop = null;
         try (DatagramSocket socket = new DatagramSocket(20000)) {
             socket.setSoTimeout(10000);
-            while (true) {
-                DatagramPacket packet = new DatagramPacket(new byte[_packetSize], _packetSize);
-                try {
+            byte[] buffer = new byte[_packetSize];
+            try {
+                while (true) {
+                    DatagramPacket packet = new DatagramPacket(buffer, _packetSize);
                     socket.receive(packet);
                     counter++;
                     if (start == null)
                         start = new Date();
                     stop = new Date();
-                } catch (SocketTimeoutException ex) {
-                    break;
                 }
+            } catch (SocketTimeoutException ex) {
             }
             if (start == null || stop == null)
                 System.out.println("Konnte keine Pakete empfangen!");
@@ -71,16 +71,17 @@ public class UDP extends TP {
         }
 
         Date start, stop;
+        byte[] data = new byte[_packetSize];
         try (DatagramSocket toSocket = new DatagramSocket()) {
-            start =  new Date();
+            start = new Date();
             for (int i = 0; i < packets; i++) {
-                DatagramPacket packet = new DatagramPacket(new byte[_packetSize], _packetSize, InetAddress.getByName("127.0.0.1"), 20000);
+                DatagramPacket packet = new DatagramPacket(data, _packetSize, InetAddress.getByName("127.0.0.1"), 20000);
                 toSocket.send(packet);
                 if ((i + 1) % N == 0) {
                     Thread.sleep(K);
                 }
             }
-            stop =  new Date();
+            stop = new Date();
         }
         long millis = Math.abs(stop.getTime() - start.getTime());
         System.out.println("Es wurden " + packets + " Pakete gesendet in " + millis + " ms");
