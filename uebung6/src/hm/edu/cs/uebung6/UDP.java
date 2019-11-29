@@ -70,7 +70,9 @@ public class UDP extends TP {
             return;
         }
 
+        Date start, stop;
         try (DatagramSocket toSocket = new DatagramSocket()) {
+            start =  new Date();
             for (int i = 0; i < packets; i++) {
                 DatagramPacket packet = new DatagramPacket(new byte[_packetSize], _packetSize, InetAddress.getByName("127.0.0.1"), 20000);
                 toSocket.send(packet);
@@ -78,6 +80,13 @@ public class UDP extends TP {
                     Thread.sleep(K);
                 }
             }
+            stop =  new Date();
         }
+        long millis = Math.abs(stop.getTime() - start.getTime());
+        System.out.println("Es wurden " + packets + " Pakete gesendet in " + millis + " ms");
+        System.out.println("Senderate: " + (packets / (millis / 1000.0)) + " Pakete/s");
+        System.out.println("Goodput: " + (packets / (millis / 1000.0) * _packetSize) + " Byte/s");
+        // UDP HEADER 8 Byte + IPv4 HEADER 20 Byte
+        System.out.println("Troughtput: " + (packets / (millis / 1000.0) * (_packetSize + 28)) + " Byte/s");
     }
 }
