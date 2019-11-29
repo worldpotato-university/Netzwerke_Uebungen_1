@@ -60,6 +60,10 @@ public class UDP extends TP {
         String inputK = scanner.next();
         System.out.println();
 
+        System.out.print("Host: ");
+        String inputHost = scanner.next();
+        System.out.println();
+
         int packets, N, K;
         try {
             packets = Integer.parseInt(inputPackets);
@@ -75,7 +79,7 @@ public class UDP extends TP {
         try (DatagramSocket toSocket = new DatagramSocket()) {
             start = new Date();
             for (int i = 0; i < packets; i++) {
-                DatagramPacket packet = new DatagramPacket(data, _packetSize, InetAddress.getByName("127.0.0.1"), 20000);
+                DatagramPacket packet = new DatagramPacket(data, _packetSize, InetAddress.getByName(inputHost), 20000);
                 toSocket.send(packet);
                 if ((i + 1) % N == 0) {
                     Thread.sleep(K);
@@ -88,6 +92,6 @@ public class UDP extends TP {
         System.out.println("Senderate: " + (packets / (millis / 1000.0)) + " Pakete/s");
         System.out.println("Goodput: " + (packets / (millis / 1000.0) * _packetSize) + " Byte/s");
         // UDP HEADER 8 Byte + IPv4 HEADER 20 Byte
-        System.out.println("Troughtput: " + (packets / (millis / 1000.0) * (_packetSize + 28)) + " Byte/s");
+        System.out.println("Troughput: " + (packets / (millis / 1000.0) * (_packetSize + 28)) + " Byte/s");
     }
 }
