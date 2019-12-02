@@ -32,14 +32,13 @@ public class TCP extends TP {
 
         try (
                 Socket connectionSocket = welcomeSocket.accept();
-                InputStream inFromClient =
-                        connectionSocket.getInputStream();
+                DataInputStream inFromClient =
+                        new DataInputStream(connectionSocket.getInputStream());
         ) {
 
             while (true) {
-                inFromClient.available();
-                if (inFromClient.read(dataArray, 0, _packetSize) == -1)
-                    break; // read the message
+                inFromClient.readInt();
+                inFromClient.readFully(dataArray, 0, _packetSize);
 
                 if (startServer == null)
                     startServer = new Date();
@@ -49,7 +48,7 @@ public class TCP extends TP {
         } catch (SocketTimeoutException ex) {
             System.out.println("Timeout!!");
         } catch (EOFException ex) {
-            ex.printStackTrace();
+            System.out.println("End of transmission.");
         }
 
         if (startServer == null || stopServer == null)
@@ -96,12 +95,13 @@ public class TCP extends TP {
 
         try (
                 Socket clientSocket = new Socket(inputHost, 6789);
-                OutputStream outToServer = clientSocket.getOutputStream();
+                DataOutputStream outToServer = new DataOutputStream(clientSocket.getOutputStream());
         ) {
 
             startClient = new Date();
             for (int i = 0; i < packets; i++) {
                 stopClient = new Date();
+                outToServer.writeInt(_packetSize);
                 outToServer.write(dataArray);
                 outToServer.flush();
                 if ((i + 1) % N == 0) {
@@ -116,7 +116,7 @@ public class TCP extends TP {
         long millis = Math.abs(stopClient.getTime() - startClient.getTime());
         System.out.println("Es wurden " + packets + " Pakete gesendet in " + millis + " ms");
         System.out.println("Senderate: " + (packets / (millis / 1000.0)) + " Pakete/s");
-        System.out.println("Goodput: " + (packets / (millis / 1000.0) * _packetSize) + " Byte/s");
+        System.out.println("Goodput: " + (packets  / (millis / 1000.0) * (_packetSize + Integer.BYTES)) + " Byte/s");
         // UDP HEADER 8 Byte + IPv4 HEADER 20 Byte
         System.out.println("Troughput: " + (packets / (millis / 1000.0) * (_packetSize + 28)) + " Byte/s");
 
