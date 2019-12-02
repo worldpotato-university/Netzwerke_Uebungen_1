@@ -57,7 +57,7 @@ public class TCP extends TP {
             long millis = Math.abs(stopServer.getTime() - startServer.getTime());
             System.out.println("Es wurden " + counter + " Pakete empfangen in " + millis + " ms");
             System.out.println("Empfangsrate: " + (counter / (millis / 1000.0)) + " Pakete/s");
-            System.out.println("Goodput: " + (counter / (millis / 1000.0) * _packetSize) + " Byte/s");
+            System.out.println("Goodput: " + (counter / (millis / 1000.0) * (_packetSize + Integer.BYTES)) + " Byte/s");
             // TCP HEADER 20 Byte + IPv4 HEADER 20 Byte
             System.out.println("Troughtput: " + (counter / (millis / 1000.0) * (_packetSize + 40)) + " Byte/s");
         }
@@ -118,7 +118,7 @@ public class TCP extends TP {
         System.out.println("Senderate: " + (packets / (millis / 1000.0)) + " Pakete/s");
         System.out.println("Goodput: " + (packets  / (millis / 1000.0) * (_packetSize + Integer.BYTES)) + " Byte/s");
         // UDP HEADER 8 Byte + IPv4 HEADER 20 Byte
-        System.out.println("Troughput: " + (packets / (millis / 1000.0) * (_packetSize + 28)) + " Byte/s");
+        System.out.println("Troughput: " + (packets / (millis / 1000.0) * (_packetSize + 40)) + " Byte/s");
 
     }
 }
