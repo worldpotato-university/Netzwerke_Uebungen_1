@@ -5,6 +5,9 @@ import { HereService } from './here.service';
 import { ZustellerState } from './zusteller';
 import { HueService, LampColor } from './hue.service';
 
+// background job to handle the status of messenger
+// @author von Kirschbaum
+
 @Injectable()
 export class ScheduleService extends NestSchedule {
   public constructor(
@@ -19,6 +22,8 @@ export class ScheduleService extends NestSchedule {
     // console.log('Run background job.');
 
     await Promise.all(AppService.zusteller.map(async zusteller => {
+
+      // handling of time
       switch (zusteller.status) {
         case ZustellerState.READY:
           console.log(`${zusteller.name} messenger is ready.`);
@@ -46,6 +51,7 @@ export class ScheduleService extends NestSchedule {
             }
           }
       }
+      // handling of hue color by status
       switch (zusteller.status) {
         case ZustellerState.READY:
           if (zusteller.lampColor !== LampColor.GREEN) {

@@ -1,6 +1,10 @@
 import { Body, Controller, Delete, Get, HttpException, Param, Post, Put } from '@nestjs/common';
 import { AppService } from './app.service';
 
+// controller of app.service
+// @author von Kirschbaum und Strobel
+
+
 export interface IDelivery {
   destination: string;
   temp: number;
@@ -36,7 +40,7 @@ export class AppController {
     }
     this.appService.deleteJob(id);
   }
-// TODO change put and post
+
   @Put(':id')
   updateJob(@Param('id') id: number, @Body()delivery: IDeliveryUpdate) {
     // Input validation

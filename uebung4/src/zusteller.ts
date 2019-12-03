@@ -1,5 +1,8 @@
 import { LampColor } from './hue.service';
 
+// class which represents the zusteller
+// @author Strobel
+
 export class Zusteller {
   constructor(public readonly name: string, public readonly lamp: number) {
     this.status = ZustellerState.DELIVERED;

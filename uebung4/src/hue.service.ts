@@ -3,6 +3,7 @@ import { AppService } from './app.service';
 import { Zusteller } from './zusteller';
 import * as http from 'http';
 
+
 export enum LampColor {
   OFF,
   GREEN,
@@ -10,6 +11,9 @@ export enum LampColor {
   BLUE_BLINKING,
   BLUE_BLINKING_OFF,
 }
+
+// connection to hue
+// @author Strobel
 
 export class HueService extends NestSchedule {
 
@@ -22,7 +26,6 @@ export class HueService extends NestSchedule {
     } else {
       data = {
         on: true,
-        // TODO rot muss orange sein
         hue: zusteller.lampColor === LampColor.BLUE_BLINKING ? 46920 :
           (zusteller.lampColor === LampColor.ORANGE ? 65535 :
               (zusteller.lampColor === LampColor.GREEN ? 25500 : 0)
@@ -36,12 +39,10 @@ export class HueService extends NestSchedule {
       path: `/api/2217334838210e7f244460f83b42026f/lights/${zusteller.lamp}/state`,
       method: 'PUT',
     }, res => {
-      // TODO check status response
     });
 
     req.on('error', (e) => {
       console.error(`problem with request: ${e.message}`);
-      // TODO handle response
     });
 
     req.write(JSON.stringify(data));
@@ -54,12 +55,12 @@ export class HueService extends NestSchedule {
       if (zusteller.lampColor === LampColor.BLUE_BLINKING) {
         zusteller.lampColor = LampColor.BLUE_BLINKING_OFF;
         await this.color(zusteller).catch(() => {
-          // TODO handle error
+          console.error("Problem with blinking")
         });
       } else if (zusteller.lampColor === LampColor.BLUE_BLINKING_OFF) {
         zusteller.lampColor = LampColor.BLUE_BLINKING;
         await this.color(zusteller).catch(() => {
-          // TODO handle error
+          console.error("Problem with blinking")
         });
       }
     }));

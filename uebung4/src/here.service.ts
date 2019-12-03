@@ -2,6 +2,9 @@ import { HttpService, Injectable } from '@nestjs/common';
 import { IGeocodeResponse } from './interfaces/geocode-response.interface';
 import { IRoutingResponse } from './interfaces/routing-rsponse.interface';
 
+// here service
+// @author von Kirschbaum
+
 @Injectable()
 export class HereService {
   private appId = process.env.HERE_APP;

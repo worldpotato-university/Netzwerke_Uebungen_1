@@ -2,6 +2,9 @@ import { HttpException, Injectable } from '@nestjs/common';
 import { Zusteller, ZustellerState } from './zusteller';
 import { HereService } from './here.service';
 
+// to manage the delivery jobs
+// @author von Kirschbaun & Strobel
+
 @Injectable()
 export class AppService {
   public static zusteller: Zusteller[] = [];
@@ -33,7 +36,7 @@ export class AppService {
       zust.latDestination = response.View[0].Result[0].Location.NavigationPosition[0].Latitude;
       zust.lonDestination = response.View[0].Result[0].Location.NavigationPosition[0].Longitude;
     } else {
-      // TODO throw correct http error input scheisse
+      console.error("Error in requesting geocode")
       throw 'no address found';
     }
   }
