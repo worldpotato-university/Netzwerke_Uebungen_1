@@ -3,8 +3,6 @@ import { AppService } from './app.service';
 
 // controller of app.service
 // @author von Kirschbaum und Strobel
-
-
 export interface IDelivery {
   destination: string;
   temp: number;

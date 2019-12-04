@@ -1,7 +1,7 @@
 import { NestFactory } from '@nestjs/core';
 import { AppModule } from './app.module';
 
-//main
+// main
 // @author von Kirschbaum
 
 async function bootstrap() {

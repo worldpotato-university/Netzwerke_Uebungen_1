@@ -3,7 +3,6 @@ import { AppService } from './app.service';
 import { Zusteller } from './zusteller';
 import * as http from 'http';
 
-
 export enum LampColor {
   OFF,
   GREEN,
@@ -39,6 +38,7 @@ export class HueService extends NestSchedule {
       path: `/api/2217334838210e7f244460f83b42026f/lights/${zusteller.lamp}/state`,
       method: 'PUT',
     }, res => {
+      // nothing to do here
     });
 
     req.on('error', (e) => {
@@ -55,12 +55,12 @@ export class HueService extends NestSchedule {
       if (zusteller.lampColor === LampColor.BLUE_BLINKING) {
         zusteller.lampColor = LampColor.BLUE_BLINKING_OFF;
         await this.color(zusteller).catch(() => {
-          console.error("Problem with blinking")
+          console.error('Problem with blinking');
         });
       } else if (zusteller.lampColor === LampColor.BLUE_BLINKING_OFF) {
         zusteller.lampColor = LampColor.BLUE_BLINKING;
         await this.color(zusteller).catch(() => {
-          console.error("Problem with blinking")
+          console.error('Problem with blinking');
         });
       }
     }));
