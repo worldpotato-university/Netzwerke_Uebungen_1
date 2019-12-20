@@ -36,8 +36,8 @@ export class AppService {
       zust.latDestination = response.View[0].Result[0].Location.NavigationPosition[0].Latitude;
       zust.lonDestination = response.View[0].Result[0].Location.NavigationPosition[0].Longitude;
     } else {
-      console.error("Error in requesting geocode")
-      throw 'no address found';
+      console.error('Error in requesting geocode');
+      throw new Error('no address found');
     }
   }
 
