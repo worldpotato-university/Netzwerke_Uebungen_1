@@ -30,37 +30,56 @@ public class TCP extends TP {
         ServerSocket welcomeSocket = new ServerSocket(6789);
         welcomeSocket.setSoTimeout(timeout);
 
-        try (
-                Socket connectionSocket = welcomeSocket.accept();
-                DataInputStream inFromClient =
-                        new DataInputStream(connectionSocket.getInputStream());
-        ) {
+        long[] milliseconds = new long[3];
+        int[] numberOfPackages = new int[3];
+        double[] empfangsraten = new double[3];
+        double[] goodputs = new double[3];
 
-            while (true) {
-                inFromClient.readInt();
-                inFromClient.readFully(dataArray, 0, _packetSize);
+        for (int i = 0; i < 3; i++) {
+            try (
+                    Socket connectionSocket = welcomeSocket.accept();
+                    DataInputStream inFromClient =
+                            new DataInputStream(connectionSocket.getInputStream());
+            ) {
 
-                if (startServer == null)
-                    startServer = new Date();
-                stopServer = new Date();
-                counter++;
+                while (true) {
+                    inFromClient.readInt();
+                    inFromClient.readFully(dataArray, 0, _packetSize);
+
+                    if (startServer == null)
+                        startServer = new Date();
+                    stopServer = new Date();
+                    counter++;
+                }
+            } catch (SocketTimeoutException ex) {
+                System.out.println("Timeout!!");
+            } catch (EOFException ex) {
+                System.out.println("End of transmission.");
             }
-        } catch (SocketTimeoutException ex) {
-            System.out.println("Timeout!!");
-        } catch (EOFException ex) {
-            System.out.println("End of transmission.");
+
+            if (startServer == null || stopServer == null)
+                System.out.println("Konnte keine Pakete empfangen!");
+            else {
+                long millis = Math.abs(stopServer.getTime() - startServer.getTime());
+                double empfangsrate = (counter / (millis / 1000.0));
+                double goodput = (counter / (millis / 1000.0) * _packetSize);
+                double throughtput = (counter / (millis / 1000.0) * (_packetSize + 40 + Integer.BYTES));
+
+                milliseconds[i] = millis;
+                numberOfPackages[i] = counter;
+                empfangsraten[i] = empfangsrate;
+                goodputs[i] = goodput;
+
+
+//                System.out.println("Es wurden " + counter + " Pakete empfangen in " + millis + " ms");
+//                System.out.println("Empfangsrate: " + empfangsrate + " Pakete/s");
+//                System.out.println("Goodput: " + goodput + " Byte/s");
+//                // TCP HEADER 20 Byte + IPv4 HEADER 20 Byte
+//                System.out.println("Troughtput: " + throughtput + " Byte/s");
+            }
+
         }
 
-        if (startServer == null || stopServer == null)
-            System.out.println("Konnte keine Pakete empfangen!");
-        else {
-            long millis = Math.abs(stopServer.getTime() - startServer.getTime());
-            System.out.println("Es wurden " + counter + " Pakete empfangen in " + millis + " ms");
-            System.out.println("Empfangsrate: " + (counter / (millis / 1000.0)) + " Pakete/s");
-            System.out.println("Goodput: " + (counter / (millis / 1000.0) * _packetSize) + " Byte/s");
-            // TCP HEADER 20 Byte + IPv4 HEADER 20 Byte
-            System.out.println("Troughtput: " + (counter / (millis / 1000.0) * (_packetSize + 40 + Integer.BYTES)) + " Byte/s");
-        }
         welcomeSocket.close();
     }
 
