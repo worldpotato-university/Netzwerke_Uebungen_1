@@ -1,5 +1,7 @@
 package de.gruppe1;
 
+import de.gruppe1.fsm.Fsm;
+
 /**
  * Wird ohne Parameter aufgerufen und wartet auf eingehende
  * Dateiübertragungen. Empfangene Dateien werden lokal gespeichert. Nach dem Empfang einer
@@ -8,6 +10,13 @@ package de.gruppe1;
 public class Main {
 
     public static void main(String[] args) {
-	// write your code here
+        Fsm fsm = new Fsm();
+        fsm.receivePackage("42".getBytes());
+        fsm.renewTimeout();
+        fsm.receivePackage("23".getBytes());
+
+        fsm.renewTimeout();
+        fsm.renewTimeout();
+
     }
 }
