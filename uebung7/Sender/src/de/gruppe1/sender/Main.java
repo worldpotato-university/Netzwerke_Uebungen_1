@@ -40,7 +40,7 @@ public class Main {
         int port = 0;
         try {
             port = Integer.parseInt(args[2]);
-            if(port < 0 || port > 65335){
+            if (port < 0 || port > 65335) {
                 System.out.println(args[0] + " is not a valid port.");
                 System.exit(-1);
             }
@@ -63,6 +63,11 @@ public class Main {
 
         List<byte[]> packages = new ArrayList<>();
         for (int i = 0; i < data.length; i += Main.PACKAGE_SIZE - 1) {
+           if (i == 0) {
+               byte[] firstPackage = createFirstPackage(data.length, file.getName());
+               packages.add(firstPackage);
+           }
+
             byte[] pack1 = Arrays.copyOfRange(data, 0, Main.PACKAGE_SIZE - 1);
             byte checksum = getChecksum(pack1);
 
@@ -81,5 +86,24 @@ public class Main {
         for (int i = 0; i < blk.length; i++)
             sum += blk[i];
         return sum;
+    }
+
+    static byte[] createFirstPackage(int numberOfBytes, String nameOfFile) {
+
+        byte[] pkg = new byte[768];
+        byte[] nmbrData = toByteArray(numberOfBytes);
+        System.arraycopy(nmbrData, 0, pkg, 0, nmbrData.length);
+        System.arraycopy(nameOfFile.getBytes(), 0, pkg, 4, nameOfFile.getBytes().length);
+
+        return pkg;
+    }
+
+    static byte[] toByteArray(int value) {
+        return new byte[]{
+                (byte) (value >> 24),
+                (byte) (value >> 16),
+                (byte) (value >> 8),
+                (byte) value};
+
     }
 }
