@@ -1,6 +1,5 @@
 package de.gruppe1.sender;
 
-import com.sun.tools.javac.util.ArrayUtils;
 
 import java.io.File;
 import java.io.IOException;
@@ -15,7 +14,8 @@ import java.util.stream.Stream;
 public class Main {
     public static final int TIMEOUT = 1000; // in ms
     public static final int PACKAGE_SIZE = 768;
-
+    public static final int ACK_SIZE = 5;
+    public static final int INPUT_PORT = 2000;
 
     public static void main(String[] args) throws IOException {
         if (args.length != 3) {
