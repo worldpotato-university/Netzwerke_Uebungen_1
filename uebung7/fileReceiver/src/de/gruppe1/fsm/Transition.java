@@ -3,7 +3,7 @@ package de.gruppe1.fsm;
 import java.util.ArrayList;
 import java.util.List;
 
-class Transition {
+public class Transition {
     STATES from;
     STATES to;
     ACTIONS action;
@@ -14,7 +14,7 @@ class Transition {
         this.action = action;
     }
 
-    static List<Transition> getList() {
+    public static List<Transition> getList() {
         List<Transition> transitions = new ArrayList<>();
 
         transitions.add(new Transition(STATES.WAIT_FOR_ACK_0, STATES.WAIT_FOR_ACK_1, ACTIONS.RECEIVE_PACKAGE));

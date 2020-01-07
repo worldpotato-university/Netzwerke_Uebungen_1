@@ -9,14 +9,18 @@ import de.gruppe1.fsm.Fsm;
  */
 public class Main {
 
+    private static final int PACKAGE_SIZE = 768;
+    private static final int LISTEN_PORT = 2001;
+    private static final int SERVER_PORT = 2000;
+    private static final String SERVER_ADDRESS = "LOCALHOST";
+
     public static void main(String[] args) {
-        Fsm fsm = new Fsm();
-        fsm.receivePackage("42".getBytes());
-        fsm.renewTimeout();
-        fsm.receivePackage("23".getBytes());
-
-        fsm.renewTimeout();
-        fsm.renewTimeout();
-
+        while (true) {
+            Fsm fsm = new Fsm(SERVER_ADDRESS, SERVER_PORT, LISTEN_PORT, PACKAGE_SIZE);
+            fsm.run();
+            System.out.println("[INFO] Finite State machine stopped");
+        }
     }
+
+
 }

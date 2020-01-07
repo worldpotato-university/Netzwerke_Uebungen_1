@@ -1,55 +1,111 @@
 package de.gruppe1.fsm;
 
-import de.gruppe1.fsm.states.*;
+import de.gruppe1.connection.Sender;
+import de.gruppe1.fsm.states.State;
+import de.gruppe1.fsm.states.WaitForAck0;
+import de.gruppe1.fsm.states.WaitForAck1;
 
+import java.io.File;
 import java.util.ArrayList;
 import java.util.List;
 
 public class Fsm {
 
-//    private int maxRetries = 20;
-//    private int ackTimeout = 500; // ms
+    private int TIMEOUT = 5000;
 
-    private List<State> states;
-    private List<Transition> transitions;
     private STATES currentState = STATES.WAIT_FOR_ACK_0;
 
-    public Fsm() {
-        states = new ArrayList<>();
-        states.add(new WaitForAck0());
-        states.add(new WaitForAck1());
+    private List<State> states;
+    private long targetFileSize = -1;
+    private String targetFileName;
 
-        transitions = Transition.getList();
-    }
+    private String serverAddress;
+    private int serverPort;
+    private int listenPort;
+    private int packageSize;
 
-    public void receivePackage(byte[] pkg) {
-        states.get(currentState.value).receivePackage(pkg);
-        next(ACTIONS.RECEIVE_PACKAGE);
-        // TODO implement send(ACK0)
-    }
-
-    public void renewTimeout() {
-        states.get(currentState.value).renewTimeout();
-        // TODO implement send(ACK1)
-        next(ACTIONS.SEND_ACK_AFTER_TIMEOUT);
-    }
-
+    private Sender ackSender;
     /**
-     * Sets the next state dependent on the current state and the given action.
-     * It's using the transitions list as a sort of lookup table.
-     * @param action which is done with the current state.
+     * Default constructor to create the FSM object.
      */
-    private void next(ACTIONS action) {
-        STATES newState = null;
-        for (Transition transition :
-             transitions) {
-            if (transition.from == currentState && transition.action == action) {
-                newState = transition.to;
+    public Fsm(String serverAddress, int serverPort, int listenPort, int packageSize) {
+        this.serverPort = serverPort;
+        this.serverAddress = serverAddress;
+        this.listenPort = listenPort;
+        this.packageSize = packageSize;
+
+        states = new ArrayList<>();
+        states.add(new WaitForAck0(this));
+        states.add(new WaitForAck1(this));
+
+        ackSender = new Sender(this);
+    }
+
+    public void run() {
+        if (targetFileSize == -1 && targetFileName == null) {
+        }
+        while (currentState != STATES.FINISHED) {
+            State nextStateToRun = states.get(currentState.value);
+            currentState = nextStateToRun.run();
+            try {
+                Thread.sleep(2000L);
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            }
+
+            if(targetFileSize != -1
+                    && targetFileName != null) {
+                long missingBytes = missingBytes();
+                if (missingBytes == 0) {
+                    currentState = STATES.FINISHED;
+                    System.out.println("[INFO] Transmission finished");
+                }
             }
         }
-        if (newState != null) {
-            System.out.println("New State: " + newState.toString());
-        }
-        currentState = newState;
+    }
+
+    protected long missingBytes() {
+        File f = new File(targetFileName);
+        return targetFileSize - f.length();
+    }
+
+    public String getTargetFileName() {
+        return targetFileName;
+    }
+
+    public void setTargetFileName(String targetFileName) {
+        this.targetFileName = targetFileName;
+    }
+
+    public long getTargetFileSize() {
+        return targetFileSize;
+    }
+
+    public void setTargetFileSize(long targetFileSize) {
+        this.targetFileSize = targetFileSize;
+    }
+
+    public int getTIMEOUT() {
+        return TIMEOUT;
+    }
+
+    public String getServerAddress() {
+        return serverAddress;
+    }
+
+    public int getListenPort() {
+        return listenPort;
+    }
+
+    public int getPackageSize() {
+        return packageSize;
+    }
+
+    public int getServerPort() {
+        return serverPort;
+    }
+
+    public Sender getAckSender() {
+        return ackSender;
     }
 }
