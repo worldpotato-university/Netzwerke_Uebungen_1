@@ -84,7 +84,7 @@ Client: 10.181.110.148
 Server: 129.187.208.9
 
 Packet | Sender | Empfänger | Typ  | Erläuterung
-=======|========|===========|======|=============
+-------|--------|-----------|------|-------------
 202    | Client | Server    | SYNC | Zum Verbindungsaufbau
 203    | Server | Client    | SYNC | ACK des Verbindungsaufbaus
 670    | Client | Server    | GET  | HTTP GET Request
